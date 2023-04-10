@@ -1,22 +1,29 @@
 <template>
-  <div class="cartas">
-      <img source="/muelle.jpeg" class="h-50 w-50" />
-      <h5 >
+  <div class="carta">
+      <img id="imgPokemon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/2.png"  />
+      <h5 id="nombrePokemon">
         NOMBRE POKEMON
       </h5>
   </div>
 </template>
   
   <style>
-.cartas {
-  height: 25vh;
-  width: 25%;
+.carta{
   display: flex;
   justify-content: center;
   align-items: center;
   background: red;
-  border: 2px solid white;
-  box-shadow: 10px 5px 5px black;
+  border: 4px solid white;
   color:white;
+  box-shadow: 0px 10px 15px black;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+img{
+    height: 100%;
+    width: auto;
 }
 </style>
