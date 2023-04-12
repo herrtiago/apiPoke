@@ -1,9 +1,11 @@
 <template>
+ <nuxt-link class="flex" :to="nombre">
   <div class="carta">
       <img id="imgPokemon" :src="url"  />
       <h5 id="nombrePokemon">{{ nombre }}
       </h5>
   </div>
+ </nuxt-link>
 </template>
   
 <script>

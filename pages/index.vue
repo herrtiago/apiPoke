@@ -43,9 +43,12 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Sedgwick+Ave+Display&display=swap");
 
+body{
+  height: 100%;
+}
 .main {
   background-color: aquamarine;
-  height: 100vh;
+  height:100%;
   display: flex;
   justify-content: center;
   align-items: center;
