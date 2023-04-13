@@ -1,31 +1,31 @@
 <template>
   <div class="main">
     <div class="titulo">
-      <h1>Habilidades</h1>
+      <h1>{{ ruta.name }}</h1>
     </div>
     <div class="info">
-        <div class=" h-[100%] w-[50%]">
-      <h2>Habilidades</h2>
-      <p v-for="i in ruta.abilities" :key="i.name">
-        {{ i.ability.name }}
-      </p>
-      <h2>Stats</h2>
-      <p v-for="i in ruta.stats" :key="i.stat.name">
-        {{ i.stat.name }} : {{ i.base_stat }}
-      </p>
-    </div>
+      <div class=" h-[100%] w-[50%]">
+        <h2>Habilidades</h2>
+        <p v-for="i in ruta.abilities" :key="i.name">
+          {{ i.ability.name }}
+        </p>
+        <h2>Stats</h2>
+        <p v-for="i in ruta.stats" :key="i.stat.name">
+          {{ i.stat.name }} : {{ i.base_stat }}
+        </p>
+        <img class="imgFront" :src="urlImg" alt="" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { getCipherInfo } from "crypto";
-
 export default {
   name: "PokemonPage",
   data() {
     return {
       ruta: [],
+      urlImg: "",
     };
   },
   mounted() {
@@ -36,6 +36,7 @@ export default {
       const { data } = await this.$axios.get(`pokemon${this.$route.path}`);
       this.ruta = data;
       console.log(this.ruta);
+      this.urlImg = this.ruta.sprites.other.dream_world.front_default;
     },
   },
 };
@@ -82,5 +83,11 @@ h2 {
   font-family: "Delicious Handrawn", cursive;
   font-family: "Sedgwick Ave Display", cursive;
   margin-top: 1.5rem;
+}
+
+.imgFront {
+  height: 40%;
+  width:40%;
+  margin: auto;
 }
 </style>
