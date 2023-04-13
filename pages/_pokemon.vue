@@ -1,10 +1,11 @@
 <template>
-  <div class="main">
+  <Loading v-if="loading" />
+  <div class="main" v-else>
     <div class="titulo">
       <h1>{{ ruta.name }}</h1>
     </div>
     <div class="info">
-      <div class=" h-[100%] w-[50%]">
+      <div class="h-[100%] w-[50%]">
         <h2>Habilidades</h2>
         <p v-for="i in ruta.abilities" :key="i.name">
           {{ i.ability.name }}
@@ -26,6 +27,7 @@ export default {
     return {
       ruta: [],
       urlImg: "",
+      loading: true,
     };
   },
   mounted() {
@@ -33,10 +35,15 @@ export default {
   },
   methods: {
     async getInfo() {
-      const { data } = await this.$axios.get(`pokemon${this.$route.path}`);
-      this.ruta = data;
-      console.log(this.ruta);
-      this.urlImg = this.ruta.sprites.other.dream_world.front_default;
+      try {
+        const { data } = await this.$axios.get(`pokemon${this.$route.path}`);
+        this.ruta = data;
+        console.log(this.ruta);
+        this.urlImg = this.ruta.sprites.other.dream_world.front_default;
+        this.loading=false;
+      } catch (error) {
+        console.log("Hubo un error al cargar el Pokemon.");
+      }
     },
   },
 };
@@ -87,7 +94,7 @@ h2 {
 
 .imgFront {
   height: 40%;
-  width:40%;
+  width: 40%;
   margin: auto;
 }
 </style>

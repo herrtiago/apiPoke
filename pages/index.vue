@@ -12,7 +12,7 @@
         v-for="i in response"
         :key="i"
         :nombre="i.name"
-        :url="i.sprites.front_default"
+        :url="i.sprites.other.dream_world.front_default"
       />
     </div>
   </div>
@@ -37,10 +37,8 @@ export default {
           const { data } = await this.$axios.get(`pokemon/${j}`);
           this.response.push(data);
         }
-        setTimeout(() => this.loading = false, 3000)
-        // this.loading = false;
+        this.loading = false;
       } catch (error) {
-        console.log(error)
         console.log("Hubo un error al cargar.");
       }
     },
@@ -59,11 +57,12 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Sedgwick+Ave+Display&display=swap");
 
-body {
+body,html {
   height: 100%;
-}
-.main {
   background-color: aquamarine;
+}
+.main,
+html {
   height: 100%;
   display: flex;
   justify-content: center;
@@ -72,6 +71,7 @@ body {
 }
 
 .titulo {
+  margin-top: 5vh;
   font-size: 3rem;
   height: 10vh;
   width: 50%;
